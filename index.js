@@ -120,3 +120,40 @@ class PriorityQueueItem {
         this._priority = value;
     }
 }
+
+class PriorityQueue extends Queue {
+
+    constructor() {
+        super()
+    }
+
+    enqueue(...args) {
+        let item;
+        if (args.length === 1) {
+            item = args[0]
+        } else {
+            item = new PriorityQueueItem(args[0], args[1]);
+        }
+        if (this.isEmpty) {
+            this[0] = item
+        } else {
+            for (let i = this.size - 1; i >= 0; i--) {
+                if (item.priority >= this[i].priority) {
+                    this[i + 1] = item
+                } else {
+                    this[i + 1] = this[i]
+                }
+            }
+        }
+        return this._size++;
+    }
+}
+
+const priorityQueue = new PriorityQueue()
+priorityQueue.enqueue(10, 4)
+priorityQueue.enqueue(5, 10)
+priorityQueue.enqueue(5, 3)
+priorityQueue.enqueue(5, 5)
+priorityQueue.enqueue(5, 7)
+priorityQueue.dequeue()
+console.log(priorityQueue)
