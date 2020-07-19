@@ -89,3 +89,34 @@ console.log(queue)
 console.log(queue.isEmpty)
 console.log(queue.front())
 console.log(queue.size)
+
+
+class PriorityQueueItem {
+
+    constructor(value, priority) {
+        this.value = value;
+        this.priority = priority;
+    }
+
+    get value() {
+        return this._value
+    }
+
+    set value(value) {
+        this._value = value;
+    }
+
+    get priority() {
+        return this._priority;
+    }
+
+    set priority(value) {
+        if (typeof value !== 'number') {
+            throw new TypeError('Property priority must be number type');
+        }
+        if (value < 0) {
+            throw new RangeError('Property priority must be positive integer');
+        }
+        this._priority = value;
+    }
+}
